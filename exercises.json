@@ -1,0 +1,62 @@
+{
+  "none": [
+    {"name": "Push-ups",          "muscle": "Chest / Triceps",    "sets": 3, "reps": "15"},
+    {"name": "Bodyweight Squats", "muscle": "Legs / Glutes",      "sets": 3, "reps": "20"},
+    {"name": "Lunges",            "muscle": "Legs",                "sets": 3, "reps": "12 each"},
+    {"name": "Plank",             "muscle": "Core",                "sets": 3, "reps": "30 sec"},
+    {"name": "Glute Bridges",     "muscle": "Glutes / Hamstrings", "sets": 3, "reps": "15"},
+    {"name": "Mountain Climbers", "muscle": "Core / Cardio",       "sets": 3, "reps": "20"},
+    {"name": "Tricep Dips",       "muscle": "Triceps",             "sets": 3, "reps": "12"},
+    {"name": "Jumping Jacks",     "muscle": "Full Body / Cardio",  "sets": 3, "reps": "30"}
+  ],
+  "dumbbells": [
+    {"name": "Dumbbell Curl",          "muscle": "Biceps",          "sets": 3, "reps": "12"},
+    {"name": "Dumbbell Shoulder Press","muscle": "Shoulders",       "sets": 3, "reps": "10"},
+    {"name": "Dumbbell Row",           "muscle": "Back",            "sets": 3, "reps": "12"},
+    {"name": "Dumbbell Deadlift",      "muscle": "Hamstrings/Back", "sets": 3, "reps": "10"},
+    {"name": "Dumbbell Chest Press",   "muscle": "Chest",           "sets": 3, "reps": "12"},
+    {"name": "Dumbbell Lateral Raise", "muscle": "Shoulders",       "sets": 3, "reps": "15"}
+  ],
+  "barbell": [
+    {"name": "Barbell Squat",         "muscle": "Legs",       "sets": 4, "reps": "8"},
+    {"name": "Barbell Bench Press",   "muscle": "Chest",      "sets": 4, "reps": "8"},
+    {"name": "Barbell Deadlift",      "muscle": "Full Body",  "sets": 3, "reps": "6"},
+    {"name": "Barbell Row",           "muscle": "Back",       "sets": 3, "reps": "10"},
+    {"name": "Barbell Overhead Press","muscle": "Shoulders",  "sets": 3, "reps": "8"}
+  ],
+  "resistance bands": [
+    {"name": "Band Pull-Apart",   "muscle": "Upper Back",    "sets": 3, "reps": "15"},
+    {"name": "Band Squat",        "muscle": "Legs",          "sets": 3, "reps": "15"},
+    {"name": "Band Row",          "muscle": "Back / Biceps", "sets": 3, "reps": "12"},
+    {"name": "Band Chest Press",  "muscle": "Chest",         "sets": 3, "reps": "12"},
+    {"name": "Band Lateral Walk", "muscle": "Glutes / Hips", "sets": 3, "reps": "10 each"}
+  ],
+  "pull-up bar": [
+    {"name": "Pull-ups",          "muscle": "Back / Biceps",    "sets": 3, "reps": "8"},
+    {"name": "Chin-ups",          "muscle": "Biceps / Back",    "sets": 3, "reps": "8"},
+    {"name": "Hanging Knee Raise","muscle": "Core",             "sets": 3, "reps": "12"},
+    {"name": "Dead Hang",         "muscle": "Grip / Shoulders", "sets": 3, "reps": "30 sec"}
+  ],
+  "bench": [
+    {"name": "Step-ups",             "muscle": "Legs / Glutes", "sets": 3, "reps": "12 each"},
+    {"name": "Decline Push-ups",     "muscle": "Upper Chest",   "sets": 3, "reps": "12"},
+    {"name": "Incline Push-ups",     "muscle": "Lower Chest",   "sets": 3, "reps": "12"},
+    {"name": "Bulgarian Split Squat","muscle": "Legs",          "sets": 3, "reps": "10 each"}
+  ],
+  "kettlebell": [
+    {"name": "Kettlebell Swing",      "muscle": "Full Body",       "sets": 3, "reps": "15"},
+    {"name": "Kettlebell Goblet Squat","muscle": "Legs",           "sets": 3, "reps": "12"},
+    {"name": "Kettlebell Clean",      "muscle": "Full Body",       "sets": 3, "reps": "10"},
+    {"name": "Turkish Get-Up",        "muscle": "Full Body / Core","sets": 3, "reps": "5 each"}
+  ],
+  "treadmill": [
+    {"name": "Warm-up Walk",     "muscle": "Cardio",        "sets": 1, "reps": "5 min"},
+    {"name": "Jogging",          "muscle": "Cardio",        "sets": 1, "reps": "20 min"},
+    {"name": "Sprint Intervals", "muscle": "Cardio / Legs", "sets": 6, "reps": "30 sec sprint + 1 min walk"}
+  ],
+  "jump rope": [
+    {"name": "Basic Jump",           "muscle": "Cardio / Calves",       "sets": 3, "reps": "1 min"},
+    {"name": "Double Unders",        "muscle": "Cardio / Coordination", "sets": 3, "reps": "30 sec"},
+    {"name": "High Knees Jump Rope", "muscle": "Cardio / Core",         "sets": 3, "reps": "45 sec"}
+  ]
+}
