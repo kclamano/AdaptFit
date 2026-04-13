@@ -1,32 +1,32 @@
 {
   "none": [
-    {"name": "Push-ups",          "muscle": "Chest / Triceps",    "sets": 3, "reps": "15",       "difficulty": "beginner",     "substitute": "Incline Push-ups"},
+    {"name": "Push-ups",          "muscle": "Chest / Triceps",    "sets": 3, "reps": "15",       "difficulty": "beginner",     "substitute": "Tricep Dips"},
     {"name": "Bodyweight Squats", "muscle": "Legs / Glutes",      "sets": 3, "reps": "20",       "difficulty": "beginner",     "substitute": "Lunges"},
     {"name": "Lunges",            "muscle": "Legs",               "sets": 3, "reps": "12 each",  "difficulty": "beginner",     "substitute": "Bodyweight Squats"},
-    {"name": "Plank",             "muscle": "Core",               "sets": 3, "reps": "30 sec",   "difficulty": "beginner",     "substitute": "Dead Bug"},
-    {"name": "Glute Bridges",     "muscle": "Glutes / Hamstrings","sets": 3, "reps": "15",       "difficulty": "beginner",     "substitute": "Donkey Kicks"},
+    {"name": "Plank",             "muscle": "Core",               "sets": 3, "reps": "30 sec",   "difficulty": "beginner",     "substitute": "Glute Bridges"},
+    {"name": "Glute Bridges",     "muscle": "Glutes / Hamstrings","sets": 3, "reps": "15",       "difficulty": "beginner",     "substitute": "Lunges"},
     {"name": "Mountain Climbers", "muscle": "Core / Cardio",      "sets": 3, "reps": "20",       "difficulty": "intermediate", "substitute": "Plank"},
     {"name": "Tricep Dips",       "muscle": "Triceps",            "sets": 3, "reps": "12",       "difficulty": "intermediate", "substitute": "Push-ups"},
-    {"name": "Jumping Jacks",     "muscle": "Full Body / Cardio", "sets": 3, "reps": "30",       "difficulty": "beginner",     "substitute": "Step Jacks"},
+    {"name": "Jumping Jacks",     "muscle": "Full Body / Cardio", "sets": 3, "reps": "30",       "difficulty": "beginner",     "substitute": "Mountain Climbers"},
     {"name": "Burpees",           "muscle": "Full Body",          "sets": 3, "reps": "10",       "difficulty": "advanced",     "substitute": "Mountain Climbers"},
     {"name": "Pike Push-ups",     "muscle": "Shoulders / Triceps","sets": 3, "reps": "10",       "difficulty": "intermediate", "substitute": "Push-ups"},
     {"name": "Diamond Push-ups",  "muscle": "Chest / Triceps",    "sets": 3, "reps": "10",       "difficulty": "advanced",     "substitute": "Push-ups"},
     {"name": "Single-Leg Squats", "muscle": "Legs / Balance",     "sets": 3, "reps": "8 each",   "difficulty": "advanced",     "substitute": "Bodyweight Squats"}
   ],
   "dumbbells": [
-    {"name": "Dumbbell Curl",            "muscle": "Biceps",           "sets": 3, "reps": "12",      "difficulty": "beginner",     "substitute": "Band Bicep Curl"},
-    {"name": "Dumbbell Shoulder Press",  "muscle": "Shoulders",        "sets": 3, "reps": "10",      "difficulty": "beginner",     "substitute": "Pike Push-ups"},
-    {"name": "Dumbbell Row",             "muscle": "Back",             "sets": 3, "reps": "12",      "difficulty": "beginner",     "substitute": "Band Row"},
+    {"name": "Dumbbell Curl",            "muscle": "Biceps",           "sets": 3, "reps": "12",      "difficulty": "beginner",     "substitute": "Dumbbell Hammer Curl"},
+    {"name": "Dumbbell Shoulder Press",  "muscle": "Shoulders",        "sets": 3, "reps": "10",      "difficulty": "beginner",     "substitute": "Dumbbell Lateral Raise"},
+    {"name": "Dumbbell Row",             "muscle": "Back",             "sets": 3, "reps": "12",      "difficulty": "beginner",     "substitute": "Dumbbell Deadlift"},
     {"name": "Dumbbell Deadlift",        "muscle": "Hamstrings / Back","sets": 3, "reps": "10",      "difficulty": "intermediate", "substitute": "Glute Bridges"},
     {"name": "Dumbbell Chest Press",     "muscle": "Chest",            "sets": 3, "reps": "12",      "difficulty": "beginner",     "substitute": "Push-ups"},
-    {"name": "Dumbbell Lateral Raise",   "muscle": "Shoulders",        "sets": 3, "reps": "15",      "difficulty": "beginner",     "substitute": "Band Lateral Raise"},
+    {"name": "Dumbbell Lateral Raise",   "muscle": "Shoulders",        "sets": 3, "reps": "15",      "difficulty": "beginner",     "substitute": "Dumbbell Shoulder Press"},
     {"name": "Dumbbell Hammer Curl",     "muscle": "Biceps / Forearms","sets": 3, "reps": "12",      "difficulty": "beginner",     "substitute": "Dumbbell Curl"},
     {"name": "Dumbbell Tricep Extension","muscle": "Triceps",          "sets": 3, "reps": "12",      "difficulty": "intermediate", "substitute": "Tricep Dips"},
     {"name": "Dumbbell Lunge",           "muscle": "Legs / Glutes",    "sets": 3, "reps": "10 each", "difficulty": "intermediate", "substitute": "Bodyweight Squats"},
-    {"name": "Dumbbell Shrug",           "muscle": "Traps",            "sets": 3, "reps": "15",      "difficulty": "beginner",     "substitute": "Band Pull-Apart"}
+    {"name": "Dumbbell Shrug",           "muscle": "Traps",            "sets": 3, "reps": "15",      "difficulty": "beginner",     "substitute": "Dumbbell Row"}
   ],
   "barbell": [
-    {"name": "Barbell Squat",          "muscle": "Legs",      "sets": 4, "reps": "8",  "difficulty": "intermediate", "substitute": "Dumbbell Goblet Squat"},
+    {"name": "Barbell Squat",          "muscle": "Legs",      "sets": 4, "reps": "8",  "difficulty": "intermediate", "substitute": "Dumbbell Lunge"},
     {"name": "Barbell Bench Press",    "muscle": "Chest",     "sets": 4, "reps": "8",  "difficulty": "intermediate", "substitute": "Dumbbell Chest Press"},
     {"name": "Barbell Deadlift",       "muscle": "Full Body", "sets": 3, "reps": "6",  "difficulty": "advanced",     "substitute": "Dumbbell Deadlift"},
     {"name": "Barbell Row",            "muscle": "Back",      "sets": 3, "reps": "10", "difficulty": "intermediate", "substitute": "Dumbbell Row"},
@@ -35,18 +35,18 @@
     {"name": "Barbell Curl",           "muscle": "Biceps",    "sets": 3, "reps": "10", "difficulty": "beginner",     "substitute": "Dumbbell Curl"}
   ],
   "resistance bands": [
-    {"name": "Band Pull-Apart",     "muscle": "Upper Back",  "sets": 3, "reps": "15",      "difficulty": "beginner", "substitute": "Band Row"},
-    {"name": "Band Squat",          "muscle": "Legs",        "sets": 3, "reps": "15",      "difficulty": "beginner", "substitute": "Bodyweight Squats"},
-    {"name": "Band Row",            "muscle": "Back / Biceps","sets": 3, "reps": "12",     "difficulty": "beginner", "substitute": "Dumbbell Row"},
-    {"name": "Band Chest Press",    "muscle": "Chest",       "sets": 3, "reps": "12",      "difficulty": "beginner", "substitute": "Push-ups"},
-    {"name": "Band Lateral Walk",   "muscle": "Glutes / Hips","sets": 3, "reps": "10 each","difficulty": "beginner", "substitute": "Glute Bridges"},
-    {"name": "Band Face Pull",      "muscle": "Rear Delts",  "sets": 3, "reps": "15",      "difficulty": "beginner", "substitute": "Band Pull-Apart"},
-    {"name": "Band Bicep Curl",     "muscle": "Biceps",      "sets": 3, "reps": "15",      "difficulty": "beginner", "substitute": "Dumbbell Curl"},
-    {"name": "Band Tricep Pushdown","muscle": "Triceps",     "sets": 3, "reps": "15",      "difficulty": "beginner", "substitute": "Tricep Dips"}
+    {"name": "Band Pull-Apart",     "muscle": "Upper Back",   "sets": 3, "reps": "15",      "difficulty": "beginner", "substitute": "Band Row"},
+    {"name": "Band Squat",          "muscle": "Legs",         "sets": 3, "reps": "15",      "difficulty": "beginner", "substitute": "Bodyweight Squats"},
+    {"name": "Band Row",            "muscle": "Back / Biceps","sets": 3, "reps": "12",      "difficulty": "beginner", "substitute": "Band Pull-Apart"},
+    {"name": "Band Chest Press",    "muscle": "Chest",        "sets": 3, "reps": "12",      "difficulty": "beginner", "substitute": "Push-ups"},
+    {"name": "Band Lateral Walk",   "muscle": "Glutes / Hips","sets": 3, "reps": "10 each", "difficulty": "beginner", "substitute": "Glute Bridges"},
+    {"name": "Band Face Pull",      "muscle": "Rear Delts",   "sets": 3, "reps": "15",      "difficulty": "beginner", "substitute": "Band Pull-Apart"},
+    {"name": "Band Bicep Curl",     "muscle": "Biceps",       "sets": 3, "reps": "15",      "difficulty": "beginner", "substitute": "Dumbbell Curl"},
+    {"name": "Band Tricep Pushdown","muscle": "Triceps",      "sets": 3, "reps": "15",      "difficulty": "beginner", "substitute": "Tricep Dips"}
   ],
   "pull-up bar": [
-    {"name": "Pull-ups",           "muscle": "Back / Biceps",    "sets": 3, "reps": "8",      "difficulty": "intermediate", "substitute": "Band Row"},
-    {"name": "Chin-ups",           "muscle": "Biceps / Back",    "sets": 3, "reps": "8",      "difficulty": "intermediate", "substitute": "Dumbbell Curl"},
+    {"name": "Pull-ups",           "muscle": "Back / Biceps",    "sets": 3, "reps": "8",      "difficulty": "intermediate", "substitute": "Chin-ups"},
+    {"name": "Chin-ups",           "muscle": "Biceps / Back",    "sets": 3, "reps": "8",      "difficulty": "intermediate", "substitute": "Pull-ups"},
     {"name": "Hanging Knee Raise", "muscle": "Core",             "sets": 3, "reps": "12",     "difficulty": "intermediate", "substitute": "Plank"},
     {"name": "Dead Hang",          "muscle": "Grip / Shoulders", "sets": 3, "reps": "30 sec", "difficulty": "beginner",     "substitute": "Plank"},
     {"name": "Muscle-ups",         "muscle": "Full Upper Body",  "sets": 3, "reps": "5",      "difficulty": "advanced",     "substitute": "Pull-ups"},
@@ -70,7 +70,7 @@
   ],
   "treadmill": [
     {"name": "Warm-up Walk",     "muscle": "Cardio",         "sets": 1, "reps": "5 min",                      "difficulty": "beginner",  "substitute": "Jumping Jacks"},
-    {"name": "Jogging",          "muscle": "Cardio",         "sets": 1, "reps": "20 min",                     "difficulty": "beginner",  "substitute": "Basic Jump"},
+    {"name": "Jogging",          "muscle": "Cardio",         "sets": 1, "reps": "20 min",                     "difficulty": "beginner",  "substitute": "Jumping Jacks"},
     {"name": "Sprint Intervals", "muscle": "Cardio / Legs",  "sets": 6, "reps": "30 sec sprint + 1 min walk", "difficulty": "advanced",  "substitute": "Mountain Climbers"},
     {"name": "Incline Walk",     "muscle": "Cardio / Glutes","sets": 1, "reps": "15 min",                     "difficulty": "beginner",  "substitute": "Lunges"},
     {"name": "Hill Sprints",     "muscle": "Cardio / Power", "sets": 5, "reps": "45 sec sprint",              "difficulty": "advanced",  "substitute": "Burpees"}
