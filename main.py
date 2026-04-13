@@ -17,7 +17,7 @@ def clear():
 def banner():
     print("=" * 62)
     print("  AdaptFit: Smart Workout Planning System")
-    print("     Based on Available Equipment and Lifestyle")
+    print("  Based on Available Equipment and Lifestyle")
     print("=" * 62)
 
 def pause():
