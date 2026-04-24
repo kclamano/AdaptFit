@@ -1,267 +1,55 @@
-import os
-import random
-from datetime import datetime
-from data import (
-    load_users, save_users,
-    load_sessions, add_session,
-    load_exercises, load_nutrition,
-    filter_by_level, get_substitute,
-    hash_password,
-    ALL_EQUIPMENT, EXPERIENCE_LEVELS, FREQUENCY_OPTIONS
-)
-
-def clear():
-    os.system("cls" if os.name == "nt" else "clear")
-
-def banner():
-    print("=" * 62)
-    print("  AdaptFit: Smart Workout Planning System")
-    print("  Based on Available Equipment and Lifestyle")
-    print("=" * 62)
-
-def pause():
-    input("\n Press Enter to continue...")
-
-def safe_int(prompt, min_val, max_val):
-    try:
-        val = int(input(prompt))
-        if min_val <= val <= max_val:
-            return val
-        print(f" Please enter a number between {min_val} and {max_val}.")
-        return None
-    except ValueError:
-        print(" Invalid input. Please enter a number.")
-        return None
-
-def now_str():
-    return datetime.now().strftime("%Y-%m-%d %H:%M")
-
-def register():
-    clear(); banner()
-    print("\n [ REGISTER ]\n")
-    users = load_users()
-
-    username = input(" Enter username: ").strip()
-    if not username:
-        print(" Username cannot be empty."); pause(); return
-    if username in users:
-        print(" Username already exists."); pause(); return
-
-    password = input(" Enter password: ").strip()
-    if len(password) < 4:
-        print(" Password must be at least 4 characters."); pause(); return
-    confirm = input(" Confirm password: ").strip()
-    if password != confirm:
-        print(" Passwords do not match."); pause(); return
-
-    nutrition = load_nutrition()
-    goals = list(nutrition.keys())
-    print("\n Select your fitness goal:")
-    for i, g in enumerate(goals, 1):
-        print(f" {i}. {g.title()}")
-    try:
-        c = safe_int(" Choice: ", 1, len(goals))
-        if c:
-            goal = goals[c - 1]
-        else:
-            goal = "general fitness"
-    except:
-        goal = "general fitness"
-
-    print("\n Select your experience level:")
-    for i, lvl in enumerate(EXPERIENCE_LEVELS, 1):
-        print(f" {i}. {lvl.title()}")
-    try:
-        c = safe_int(" Choice: ", 1, len(EXPERIENCE_LEVELS))
-        if c:
-            level = EXPERIENCE_LEVELS[c - 1]
-        else:
-            level = "beginner"
-    except:
-        level = "beginner"
-
-    print("\n How many days per week do you plan to work out?")
-    for i, f in enumerate(FREQUENCY_OPTIONS, 1):
-        print(f" {i}. {f} days/week")
-    try:
-        c = safe_int(" Choice: ", 1, len(FREQUENCY_OPTIONS))
-        if c:
-            frequency = FREQUENCY_OPTIONS[c - 1]
-        else:
-            frequency = 3
-    except:
-        frequency = 3
-
-    users[username] = {
-        "password": hash_password(password),
-        "goal": goal,
-        "level": level,
-        "frequency": frequency,
-        "equipment": [],
-        "joined": datetime.now().strftime("%Y-%m-%d")
-    }
-    save_users(users)
-    print(f"\n Account created! Welcome, {username}!")
-    pause()
-
-def login():
-    clear(); banner()
-    print("\n [ LOGIN ]\n")
-    users = load_users()
-    username = input(" Username: ").strip()
-    password = input(" Password: ").strip()
-    if username in users and users[username]["password"] == hash_password(password):
-        print(f"\n Welcome back, {username}!")
-        pause()
-        return username
-    print("\n Invalid username or password.")
-    pause()
-    return None
-
-def manage_equipment(username):
-    users = load_users()
-    user = users[username]
-    while True:
-        clear(); banner()
-        print(f"\n [ EQUIPMENT MANAGER ] - {username}\n")
-        current = user.get("equipment", [])
-        available = [e for e in ALL_EQUIPMENT if e not in current]
-
-        print(" Your current equipment:")
-        if current:
-            for e in current:
-                print(f" {e.title()}")
-        else:
-            print(" (none - bodyweight workouts only)")
-
-        print("\n Available equipment to add:")
-        if not available:
-            print(" You have all equipment listed!")
-        else:
-            for i, e in enumerate(available, 1):
-                print(f" {i}. {e.title()}")
-
-        print("\n Options: A - Add   R - Remove   B - Back")
-        choice = input("\n Choice: ").strip().upper()
-
-        if choice == "A" and available:
-            try:
-                c = safe_int(" Enter number to add: ", 1, len(available))
-                if not c: raise ValueError
-                eq = available[c - 1]
-                user["equipment"].append(eq)
-                users[username] = user
-                save_users(users)
-                print(f" {eq.title()} added!")
-                pause()
-            except:
-                print(" Invalid input."); pause()
-
-        elif choice == "R" and current:
-            for i, e in enumerate(current, 1):
-                print(f" {i}. {e.title()}")
-            try:
-                c = safe_int(" Enter number to remove: ", 1, len(current))
-                if not c: raise ValueError
-                eq = current[c - 1]
-                user["equipment"].remove(eq)
-                users[username] = user
-                save_users(users)
-                print(f" {eq.title()} removed.")
-                pause()
-            except:
-                print(" Invalid input."); pause()
-
-        elif choice == "B":
-            break
-
-def edit_profile(username):
-    users = load_users()
-    user = users[username]
-    while True:
-        clear(); banner()
-        print(f"\n [ PROFILE SETTINGS ] - {username}\n")
-        print(f" Goal      : {user.get('goal','').title()}")
-        print(f" Level     : {user.get('level','beginner').title()}")
-        print(f" Frequency : {user.get('frequency', 3)} days/week")
-        print("\n 1. Change Fitness Goal")
-        print(" 2. Change Experience Level")
-        print(" 3. Change Workout Frequency")
-        print(" 4. Back")
-        choice = input("\n Choice: ").strip()
-
-        if choice == "1":
-            nutrition = load_nutrition()
-            goals = list(nutrition.keys())
-            for i, g in enumerate(goals, 1):
-                print(f" {i}. {g.title()}")
-            try:
-                c = safe_int(" Choice: ", 1, len(goals))
-                if c:
-                    user["goal"] = goals[c - 1]
-                    save_users(users)
-                    print(" Goal updated!")
-            except:
-                pass
-            pause()
-
-        elif choice == "2":
-            for i, lvl in enumerate(EXPERIENCE_LEVELS, 1):
-                print(f" {i}. {lvl.title()}")
-            try:
-                c = safe_int(" Choice: ", 1, len(EXPERIENCE_LEVELS))
-                if c:
-                    user["level"] = EXPERIENCE_LEVELS[c - 1]
-                    save_users(users)
-                    print(" Level updated!")
-            except:
-                pass
-            pause()
-
-        elif choice == "3":
-            for i, f in enumerate(FREQUENCY_OPTIONS, 1):
-                print(f" {i}. {f} days/week")
-            try:
-                c = safe_int(" Choice: ", 1, len(FREQUENCY_OPTIONS))
-                if c:
-                    user["frequency"] = FREQUENCY_OPTIONS[c - 1]
-                    save_users(users)
-                    print(" Frequency updated!")
-            except:
-                pass
-            pause()
-
-        elif choice == "4":
-            break
-
 def generate_workout(username):
     clear(); banner()
     users = load_users()
     user = users[username]
     equipment = user.get("equipment", [])
     level = user.get("level", "beginner")
+    frequency = user.get("frequency", 3)
     exercises = load_exercises()
 
     print(f"\n [ WORKOUT ROUTINE ] - {username}\n")
-    print(" Generating personalized workout...\n")
+
+    print(" How much time do you have today?")
+    print(" 1. 20 minutes  (3 exercises)")
+    print(" 2. 30 minutes  (5 exercises)")
+    print(" 3. 45 minutes  (6 exercises)")
+    print(" 4. 60 minutes  (8 exercises)")
+    time_choice = safe_int(" Choice: ", 1, 4)
+    time_map = {1: (20, 3), 2: (30, 5), 3: (45, 6), 4: (60, 8)}
+    time_available, exercise_count = time_map.get(time_choice, (60, 8))
+
+    print("\n Generating personalized workout...\n")
 
     all_flat = []
     for exlist in exercises.values():
         all_flat.extend(exlist)
 
-    pool = filter_by_level(exercises.get("none", []), level)
-    for eq in equipment:
-        if eq in exercises:
-            pool.extend(filter_by_level(exercises[eq], level))
+    GYM_THRESHOLD = 2
+    if len(equipment) >= GYM_THRESHOLD:
+        workout_type = "Gym Workout"
+        pool = []
+        for eq in equipment:
+            if eq in exercises:
+                pool.extend(filter_by_level(exercises[eq], level))
+        pool.extend(filter_by_level(exercises.get("none", []), level))
+    else:
+        workout_type = "Home Workout"
+        pool = filter_by_level(exercises.get("none", []), level)
+        for eq in equipment:
+            if eq in exercises:
+                pool.extend(filter_by_level(exercises[eq], level))
 
     random.shuffle(pool)
-    selected = pool[:8]
+    selected = pool[:exercise_count]
 
     eq_label = ', '.join([e.title() for e in equipment]) if equipment else 'Bodyweight only'
 
     print(f" Today's Workout - {datetime.now().strftime('%B %d, %Y')}")
+    print(f" Type      : {workout_type}")
     print(f" Level     : {level.title()}")
     print(f" Equipment : {eq_label}")
+    print(f" Duration  : ~{time_available} minutes")
+    print(f" Frequency : {frequency} days/week schedule")
     print(" " + "-" * 58)
     print(f" {'#':<4} {'Exercise':<26} {'Muscle':<20} {'Sets x Reps':<14} {'Level'}")
     print(" " + "-" * 58)
@@ -320,173 +108,11 @@ def generate_workout(username):
 
         add_session(username, {
             "date": now_str(),
+            "workout_type": workout_type,
+            "time_available": time_available,
             "level": level,
             "equipment_used": equipment if equipment else ["bodyweight"],
             "exercises": logged_exercises
         })
         print("\n Workout logged successfully!")
     pause()
-
-def track_progress(username):
-    while True:
-        clear(); banner()
-        print(f"\n [ PROGRESS TRACKER ] - {username}\n")
-        sessions = load_sessions()
-        logs = sessions.get(username, [])
-
-        if not logs:
-            print(" No workouts logged yet. Complete a workout first!")
-            pause(); return
-
-        print(f" Total sessions logged : {len(logs)}")
-        print(f" Last workout          : {logs[-1]['date']}\n")
-        print(" 1. View recent sessions (last 5)")
-        print(" 2. View session details")
-        print(" 3. Back")
-        choice = input("\n Choice: ").strip()
-
-        if choice == "1":
-            clear(); banner()
-            print(f"\n [ RECENT SESSIONS ] - {username}\n")
-            for entry in reversed(logs[-5:]):
-                exs = entry.get("exercises", [])
-                names = [e["name"] if isinstance(e, dict) else e for e in exs]
-                print(f" {entry['date']} | Level: {entry.get('level','').title()}")
-                print(f" {', '.join(names[:4])}{'...' if len(names)>4 else ''}")
-                print()
-            pause()
-
-        elif choice == "2":
-            clear(); banner()
-            print(f"\n [ SESSION DETAILS ] - {username}\n")
-            for i, entry in enumerate(reversed(logs[-5:]), 1):
-                print(f" {i}. {entry['date']}")
-            try:
-                c = safe_int("\n Select session: ", 1, min(5, len(logs)))
-                if not c:
-                    pause(); continue
-                idx = c - 1
-                sess = list(reversed(logs[-5:]))[idx]
-                clear(); banner()
-                print(f"\n {sess['date']} | Level: {sess.get('level','').title()}")
-                print(f" Equipment: {', '.join(sess.get('equipment_used', []))}\n")
-                print(f" {'Exercise':<26} {'Weight':<14} {'Reps':<12} {'Sets'}")
-                print(" " + "-" * 56)
-                for ex in sess.get("exercises", []):
-                    if isinstance(ex, dict):
-                        print(f" {ex['name']:<26} {ex.get('weight_kg','—'):<14} {ex.get('actual_reps','—'):<12} {ex.get('sets','—')}")
-                    else:
-                        print(f" {ex}")
-                print(" " + "-" * 56)
-            except:
-                print(" Invalid selection.")
-            pause()
-
-        elif choice == "3":
-            break
-
-def view_history(username):
-    clear(); banner()
-    print(f"\n [ WORKOUT HISTORY ] - {username}\n")
-    sessions = load_sessions()
-    logs = sessions.get(username, [])
-
-    if not logs:
-        print(" No workout history found.")
-        pause(); return
-
-    print(f" {'#':<4} {'Date':<20} {'Level':<14} {'Exercises':<10} {'Equipment'}")
-    print(" " + "-" * 62)
-    for i, entry in enumerate(logs, 1):
-        exs = entry.get("exercises", [])
-        eq = ', '.join(entry.get("equipment_used", []))[:18]
-        print(f" {i:<4} {entry['date']:<20} {entry.get('level','').title():<14} {len(exs):<10} {eq}")
-    print(" " + "-" * 62)
-    pause()
-
-def nutrition_tips(username):
-    clear(); banner()
-    users = load_users()
-    nutrition = load_nutrition()
-    goal = users[username].get("goal", "general fitness")
-    tips = nutrition.get(goal, list(nutrition.values())[0])
-
-    print(f"\n [ NUTRITION TIPS ] - Goal: {goal.title()}\n")
-    print(" " + "-" * 54)
-    for tip in tips:
-        print(f" {tip}")
-    print(" " + "-" * 54)
-
-    goals = list(nutrition.keys())
-    print("\n Change goal?")
-    for i, g in enumerate(goals, 1):
-        print(f" {i}. {g.title()}")
-    print(" 0. Keep current")
-    try:
-        c = safe_int("\n Choice: ", 0, len(goals))
-        if c and 1 <= c <= len(goals):
-            users[username]["goal"] = goals[c - 1]
-            save_users(users)
-            print(f" Goal updated to: {goals[c-1].title()}")
-    except:
-        pass
-    pause()
-
-def dashboard(username):
-    while True:
-        clear(); banner()
-        users = load_users()
-        sessions = load_sessions()
-        user = users.get(username, {})
-        logs = sessions.get(username, [])
-
-        print(f"\n User       : {username}")
-        print(f" Goal       : {user.get('goal', '').title()}")
-        print(f" Level      : {user.get('level', 'beginner').title()}")
-        print(f" Frequency  : {user.get('frequency', 3)} days/week")
-        print(f" Equipment  : {len(user.get('equipment', []))} item(s)")
-        print(f" Sessions   : {len(logs)} logged (last 10 saved)")
-        print("\n " + "-" * 48)
-        print(" MAIN MENU")
-        print(" " + "-" * 48)
-        print(" 1. Manage Equipment")
-        print(" 2. Generate Workout Routine")
-        print(" 3. Track Progress")
-        print(" 4. View Workout History")
-        print(" 5. Nutrition Tips")
-        print(" 6. Profile Settings")
-        print(" 7. Logout")
-        print(" " + "-" * 48)
-        choice = input("\n Enter choice: ").strip()
-
-        if   choice == "1": manage_equipment(username)
-        elif choice == "2": generate_workout(username)
-        elif choice == "3": track_progress(username)
-        elif choice == "4": view_history(username)
-        elif choice == "5": nutrition_tips(username)
-        elif choice == "6": edit_profile(username)
-        elif choice == "7":
-            print(f"\n Goodbye, {username}! Keep grinding!")
-            pause(); break
-
-def main():
-    while True:
-        clear(); banner()
-        print("\n 1. Login")
-        print(" 2. Register")
-        print(" 3. Exit")
-        choice = input("\n Enter choice: ").strip()
-        if choice == "1":
-            user = login()
-            if user:
-                dashboard(user)
-        elif choice == "2":
-            register()
-        elif choice == "3":
-            clear()
-            print("\n Thank you for using AdaptFit!")
-            print(" Stay fit, stay healthy.\n")
-            break
-
-if __name__ == "__main__":
-    main()
